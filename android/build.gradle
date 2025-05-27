@@ -26,16 +26,19 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 32
+    namespace 'co.paystack.flutterpaystack'  // ✅ Added this line
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+
     defaultConfig {
         minSdkVersion 16
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         versionCode 21
         versionName "3.0.10"
     }
+
     lintOptions {
         disable 'InvalidPackage'
     }
