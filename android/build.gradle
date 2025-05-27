@@ -9,15 +9,8 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.0-rc02'
+        classpath 'com.android.tools.build:gradle:8.3.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
-rootProject.allprojects {
-    repositories {
-        mavenCentral()
-        google()
     }
 }
 
@@ -25,21 +18,22 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 32
-    namespace 'co.paystack.flutterpaystack'  // ✅ Added this line
+    compileSdkVersion 34
+    namespace 'co.paystack.flutterpaystack' // ✅ Critical line
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 34
+        versionCode 21
+        versionName "3.0.10"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-    defaultConfig {
-        minSdkVersion 16
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        versionCode 21
-        versionName "3.0.10"
-    }
-
-    lintOptions {
+    lint {
         disable 'InvalidPackage'
     }
 }
