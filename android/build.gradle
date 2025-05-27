@@ -29,6 +29,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    kotlinOptions {
+        jvmTarget = '1.8'  // <-- Add this to fix JVM target error
+    }
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
