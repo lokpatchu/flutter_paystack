@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
-        <activity
-            android:name=".AuthActivity"
-            android:theme="@style/Paystack.Dialog" />
+        <meta-data
+            android:name="co.paystack.sdk.PublicKey"
+            android:value="YOUR_PUBLIC_KEY_HERE" />
     </application>
+
 </manifest>
