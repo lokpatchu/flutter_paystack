@@ -4,8 +4,10 @@ version '1.0-SNAPSHOT'
 buildscript {
     ext.kotlin_version = '1.7.20'
     repositories {
-        mavenCentral()
         google()
+        mavenCentral()
+        maven { url "https://maven.google.com" }
+        maven { url "https://phonepe.mycloudrepo.io/public/repositories/phonepe-intentsdk-android" }
     }
 
     dependencies {
@@ -14,23 +16,33 @@ buildscript {
     }
 }
 
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://maven.google.com" }
+        maven { url "https://phonepe.mycloudrepo.io/public/repositories/phonepe-intentsdk-android" }
+    }
+}
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 34
-    namespace 'co.paystack.flutterpaystack' // ✅ Critical line
+    compileSdkVersion 35
+    namespace 'co.paystack.flutterpaystack'
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode 21
         versionName "3.0.10"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'  // <-- Add this to fix JVM target error
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     sourceSets {
@@ -40,6 +52,10 @@ android {
     lint {
         disable 'InvalidPackage'
     }
+}
+
+kotlin {
+    jvmToolchain(8) // ✅ this replaces jvmTarget and fixes the error
 }
 
 dependencies {
